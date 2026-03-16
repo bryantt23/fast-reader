@@ -58,7 +58,7 @@ const runHandler = () => {
         clearInterval(interval)
         showRemainingReadingInfo(textArray.length, i, wpm)
     }
-    else {
+    else if (textArray) {
         isRunning = true
         interval = setInterval(displayText, intervalTime)
         readerButton.innerHTML = "Pause"
