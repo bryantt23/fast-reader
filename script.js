@@ -1,15 +1,12 @@
-const textInput = document.querySelector("#text-input"), readerButton = document.querySelector("#reader-btn")
+const textInput = document.querySelector("#text-input"),
+    readerButton = document.querySelector("#reader-btn"),
+    currentWord = document.querySelector("#current-word")
+
 let i = 0, isRunning = false, interval = null, textArray
 const INTERVAL_TIME = 500
 
-const delay = (time) => {
-    return new Promise((resolve, reject) => {
-        setTimeout(resolve, INTERVAL_TIME)
-    })
-}
-
 const displayText = async () => {
-    console.log(textArray[i++])
+    currentWord.innerHTML = textArray[i++]
     if (i === textArray.length) {
         clearInterval(interval)
         isRunning = false
