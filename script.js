@@ -9,7 +9,12 @@ const textInput = document.querySelector("#text-input"),
 // Output: delay (number) → milliseconds between each word display (e.g., 200 ms)
 const wpmToDelay = (wpm) => 60000 / wpm;
 
-let i = 0, isRunning = false, interval = null, textArray, intervalTime = wpmToDelay(500)
+let i = 0,
+    isRunning = false,
+    interval = null,
+    textArray,
+    wpm = localStorage.getItem('wpm') || 500,
+    intervalTime = wpmToDelay(wpm)
 
 const displayText = async () => {
     currentWord.innerHTML = textArray[i++]
@@ -50,7 +55,7 @@ const runHandler = () => {
         isRunning = false
         clearInterval(interval)
         readerButton.innerHTML = "Start"
-        showRemainingReadingInfo(textArray.length, i, speedInput.value)
+        showRemainingReadingInfo(textArray.length, i, wpm)
     }
     else {
         isRunning = true
@@ -66,12 +71,15 @@ textInput.addEventListener("input", e => {
     clearInterval(interval)
     const text = textInput.value
     textArray = text.split(/\s+/)
-    showRemainingReadingInfo(textArray.length, i, speedInput.value)
+    showRemainingReadingInfo(textArray.length, i, wpm)
 })
 
 speedInput.addEventListener("input", e => {
-    const wpm = Number(e.target.value)
-    intervalTime = wpmToDelay(wpm)
+    const wpmInput = Number(e.target.value)
+    intervalTime = wpmToDelay(wpmInput)
+    localStorage.setItem('wpm', wpmInput)
+    wpm = wpmInput
+    showRemainingReadingInfo(textArray.length, i, wpm)
 })
 
 document.addEventListener('keyup', e => {
@@ -79,5 +87,9 @@ document.addEventListener('keyup', e => {
         runHandler()
     }
 })
+
+window.onload = () => {
+    speedInput.value = wpm
+}
 
 readerButton.addEventListener("click", runHandler)
