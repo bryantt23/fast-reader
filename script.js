@@ -17,12 +17,13 @@ let i = 0,
     intervalTime = wpmToDelay(wpm)
 
 const displayText = async () => {
-    currentWord.innerHTML = textArray[i++]
+    currentWord.textContent = textArray[i++]
     if (i === textArray.length) {
         clearInterval(interval)
         isRunning = false
         i = 0;
         readerButton.innerHTML = "Start"
+        currentWord.textContent = 'Finished 👍'
     }
 }
 
