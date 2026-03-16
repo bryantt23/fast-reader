@@ -47,4 +47,10 @@ speedInput.addEventListener("input", e => {
     console.log("🚀 ~ intervalTime:", intervalTime)
 })
 
+document.addEventListener('keyup', e => {
+    if (e.code === 'Space') {
+        runHandler()
+    }
+})
+
 readerButton.addEventListener("click", runHandler)
