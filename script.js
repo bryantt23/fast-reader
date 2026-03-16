@@ -1,4 +1,4 @@
-const textInput = document.querySelector("#text-input")
+const textInput = document.querySelector("#text-input"), readerButton = document.querySelector("#reader-btn")
 
 const delay = (time) => {
     return new Promise((resolve, reject) => {
@@ -6,7 +6,8 @@ const delay = (time) => {
     })
 }
 
-const displayText = async (text) => {
+const displayText = async () => {
+    const text = textInput.value
     const arr = text.split(" "), n = arr.length
     let i = 0
     while (i < n) {
@@ -16,6 +17,4 @@ const displayText = async (text) => {
 
 }
 
-window.onload = () => {
-    displayText(textInput.value)
-}
+readerButton.addEventListener("click", displayText)
