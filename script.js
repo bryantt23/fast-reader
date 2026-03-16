@@ -72,7 +72,15 @@ textInput.addEventListener("input", e => {
     readerButton.innerHTML = "Start"
     clearInterval(interval)
     const text = textInput.value
-    textArray = text.split(/\s+/)
+    const PAUSE_PUNCTUATION = ".,?!;:"
+    const textArrayTemp = text.split(/\s+/)
+    textArray = []
+    for (const word of textArrayTemp) {
+        textArray.push(word)
+        if (PAUSE_PUNCTUATION.indexOf(word[word.length - 1]) > -1) {
+            textArray.push(word)
+        }
+    }
     showRemainingReadingInfo(textArray.length, i, wpm)
 })
 
