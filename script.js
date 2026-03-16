@@ -1,6 +1,7 @@
 const textInput = document.querySelector("#text-input"),
     readerButton = document.querySelector("#reader-btn"),
-    currentWord = document.querySelector("#current-word")
+    currentWord = document.querySelector("#current-word"),
+    speedInput = document.querySelector("#speed")
 
 let i = 0, isRunning = false, interval = null, textArray
 const INTERVAL_TIME = 500
@@ -34,6 +35,10 @@ textInput.addEventListener("input", e => {
     clearInterval(interval)
     const text = textInput.value
     textArray = text.split(/\s+/)
+})
+
+speedInput.addEventListener("input", e => {
+    console.log(e.target.value)
 })
 
 readerButton.addEventListener("click", runHandler)
