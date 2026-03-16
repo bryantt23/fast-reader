@@ -42,9 +42,7 @@ textInput.addEventListener("input", e => {
 })
 
 speedInput.addEventListener("input", e => {
-    console.log('hiii')
     intervalTime = wpmToDelay(Number(e.target.value))
-    console.log("🚀 ~ intervalTime:", intervalTime)
 })
 
 document.addEventListener('keyup', e => {
