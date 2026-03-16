@@ -53,8 +53,8 @@ const showRemainingReadingInfo = (totalWords, currentIndex, wpm) => {
 const runHandler = () => {
     if (isRunning) {
         isRunning = false
-        clearInterval(interval)
         readerButton.innerHTML = "Start"
+        clearInterval(interval)
         showRemainingReadingInfo(textArray.length, i, wpm)
     }
     else {
@@ -68,6 +68,7 @@ const runHandler = () => {
 textInput.addEventListener("input", e => {
     i = 0;
     isRunning = false;
+    readerButton.innerHTML = "Start"
     clearInterval(interval)
     const text = textInput.value
     textArray = text.split(/\s+/)
@@ -85,6 +86,9 @@ speedInput.addEventListener("input", e => {
 document.addEventListener('keyup', e => {
     if (e.code === 'Space') {
         runHandler()
+    }
+    if (e.code === 'ArrowLeft') {
+        i = Math.max(0, i - 10)
     }
 })
 
