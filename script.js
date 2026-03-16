@@ -1,4 +1,4 @@
-const text = "hello world this is a speed reader test"
+const textInput = document.querySelector("#text-input")
 
 const delay = (time) => {
     return new Promise((resolve, reject) => {
@@ -16,4 +16,6 @@ const displayText = async (text) => {
 
 }
 
-displayText(text)
+window.onload = () => {
+    displayText(textInput.value)
+}
