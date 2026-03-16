@@ -1,0 +1,27 @@
+.current-word {
+  font-size: 150px;
+  color: #8ecaff;
+  font-family: Lexend;
+  padding: 10px;
+}
+
+body {
+  background-color: #111;
+  text-align: center;
+}
+
+#remaining-info {
+  color: white;
+  padding: 5px;
+}
+
+#text-input {
+  width: 80%;
+  max-width: 900px;
+  height: 100px;
+  padding: 5px;
+}
+
+#input-section {
+  padding: 5px;
+}
