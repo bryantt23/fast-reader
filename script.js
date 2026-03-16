@@ -8,7 +8,7 @@ const delay = (time) => {
 
 const displayText = async () => {
     const text = textInput.value
-    const arr = text.split(" "), n = arr.length
+    const arr = text.split(/\s+/), n = arr.length
     let i = 0
     while (i < n) {
         console.log(arr[i++])
