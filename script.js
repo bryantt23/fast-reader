@@ -51,7 +51,22 @@ const showRemainingReadingInfo = (totalWords, currentIndex, wpm) => {
     remainingInfo.textContent = remainingInfoText
 }
 
+function enterFullScreen() {
+    if (!document.fullscreenElement) {
+        // Request fullscreen for the entire page
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen()
+        }
+        else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+            document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) { /* IE11 */
+            document.documentElement.msRequestFullscreen();
+        }
+    }
+}
+
 const runHandler = () => {
+    enterFullScreen()
     if (isRunning) {
         isRunning = false
         readerButton.innerHTML = "Start"
