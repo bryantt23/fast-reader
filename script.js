@@ -86,7 +86,7 @@ textInput.addEventListener("input", e => {
     isRunning = false;
     readerButton.innerHTML = "Start"
     clearInterval(interval)
-    const text = textInput.value
+    const text = textInput.value.trim()
     const PAUSE_PUNCTUATION = ".,?!;:"
     const textArrayTemp = text.split(/\s+/)
     textArray = []
