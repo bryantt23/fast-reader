@@ -23,7 +23,7 @@ const displayText = async () => {
         isRunning = false
         i = 0;
         readerButton.innerHTML = "Start"
-        currentWord.textContent = 'Finished 👍'
+        showRemainingReadingInfo(textArray.length, 0, wpm, true)
     }
 }
 
@@ -36,18 +36,18 @@ const displayText = async () => {
 // Output example:
 //   "432 words — 1 min(s) 28 sec(s) remaining"
 
-const getRemainingReadingInfo = (totalWords, currentIndex, wpm) => {
+const getRemainingReadingInfo = (totalWords, currentIndex, wpm, finishedReading) => {
     const wordsRemaining = totalWords - currentIndex
     const totalSeconds = Math.ceil((wordsRemaining / wpm) * 60)
 
     const minutes = Math.floor(totalSeconds / 60)
     const seconds = totalSeconds % 60
 
-    return `${wordsRemaining} words and ${minutes} minute(s) and ${seconds} second(s) remaining`
+    return `${wordsRemaining} words and ${minutes} minute(s) and ${seconds} second(s) ${finishedReading ? "read" : "remaining"}`
 }
 
-const showRemainingReadingInfo = (totalWords, currentIndex, wpm) => {
-    const remainingInfoText = getRemainingReadingInfo(totalWords, currentIndex, wpm)
+const showRemainingReadingInfo = (totalWords, currentIndex, wpm, finishedReading) => {
+    const remainingInfoText = getRemainingReadingInfo(totalWords, currentIndex, wpm, finishedReading)
     remainingInfo.textContent = remainingInfoText
 }
 
@@ -71,7 +71,7 @@ const runHandler = () => {
         isRunning = false
         readerButton.innerHTML = "Start"
         clearInterval(interval)
-        showRemainingReadingInfo(textArray.length, i, wpm)
+        showRemainingReadingInfo(textArray.length, i, wpm, false)
     }
     else if (textArray) {
         isRunning = true
@@ -96,7 +96,7 @@ textInput.addEventListener("input", e => {
             textArray.push(word)
         }
     }
-    showRemainingReadingInfo(textArray.length, i, wpm)
+    showRemainingReadingInfo(textArray.length, i, wpm, false)
 })
 
 speedInput.addEventListener("input", e => {
@@ -104,7 +104,7 @@ speedInput.addEventListener("input", e => {
     intervalTime = wpmToDelay(wpmInput)
     localStorage.setItem('wpm', wpmInput)
     wpm = wpmInput
-    showRemainingReadingInfo(textArray.length, i, wpm)
+    showRemainingReadingInfo(textArray.length, i, wpm, false)
 })
 
 document.addEventListener('keyup', e => {
