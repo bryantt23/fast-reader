@@ -3,6 +3,23 @@
   color: white;
   font-family: Lexend;
   padding: 10px;
+  position: relative;
+}
+
+.current-word::after {
+  content: '';
+  position: absolute;
+
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 20px;
+  height: 20px;
+  background: blue;
+
+  border-radius: 50%; /* circle */
+  opacity: 75%;
 }
 
 body {
