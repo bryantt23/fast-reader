@@ -16,8 +16,14 @@ let i = 0,
     wpm = localStorage.getItem('wpm') || 500,
     intervalTime = wpmToDelay(wpm)
 
+const getHTML = (text) => {
+    const middle = Math.floor((text.length - 1) / 2)
+    const leftText = text.substring(0, middle), middleText = text.substring(middle, middle + 1), rightText = text.substring(middle + 1)
+    return `${leftText}<span class="highlighted">${middleText}</span>${rightText}`
+}
+
 const displayText = async () => {
-    currentWord.textContent = textArray[i++]
+    currentWord.innerHTML = getHTML(textArray[i++])
     if (i === textArray.length) {
         clearInterval(interval)
         isRunning = false
