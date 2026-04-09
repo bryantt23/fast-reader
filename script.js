@@ -30,6 +30,7 @@ const displayText = async () => {
         i = 0;
         readerButton.innerHTML = "Start"
         showRemainingReadingInfo(textArray.length, 0, wpm, true)
+        textInput.style.visibility = "visible"
     }
 }
 
@@ -78,12 +79,14 @@ const runHandler = () => {
         readerButton.innerHTML = "Start"
         clearInterval(interval)
         showRemainingReadingInfo(textArray.length, i, wpm, false)
+        textInput.style.visibility = "visible"
     }
     else if (textArray) {
         isRunning = true
         interval = setInterval(displayText, intervalTime)
         readerButton.innerHTML = "Pause"
         remainingInfo.textContent = ""
+        textInput.style.visibility = "hidden"
     }
 }
 
