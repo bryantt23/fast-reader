@@ -34,23 +34,16 @@ const displayText = async () => {
     }
 }
 
-// Returns a formatted string showing words remaining and estimated time.
-// Input:
-//   totalWords   → total number of words in the text
-//   currentIndex → current word position
-//   wpm          → reading speed in words per minute
-//
-// Output example:
-//   "432 words — 1 min(s) 28 sec(s) remaining"
-
+// Returns remaining words + estimated reading time
 const getRemainingReadingInfo = (totalWords, currentIndex, wpm, finishedReading) => {
     const wordsRemaining = totalWords - currentIndex
     const totalSeconds = Math.ceil((wordsRemaining / wpm) * 60)
 
-    const minutes = Math.floor(totalSeconds / 60)
+    const hours = Math.floor(totalSeconds / 3600)
+    const minutes = Math.floor(totalSeconds / 60) % 60
     const seconds = totalSeconds % 60
 
-    return `${wordsRemaining} words and ${minutes} minute(s) and ${seconds} second(s) ${finishedReading ? "read" : "remaining"}`
+    return `${wordsRemaining} words and ${hours} hour(s) and ${minutes} minute(s) and ${seconds} second(s) ${finishedReading ? "read" : "remaining"}`
 }
 
 const showRemainingReadingInfo = (totalWords, currentIndex, wpm, finishedReading) => {
