@@ -119,9 +119,12 @@ document.addEventListener('keyup', e => {
 })
 
 document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-        textInput?.focus()
+    if (document.visibilityState !== "visible") {
+        return
     }
+
+    textInput.focus()
+    textInput.select()
 })
 
 window.onload = () => {
