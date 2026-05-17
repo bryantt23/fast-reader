@@ -73,6 +73,7 @@ const runHandler = () => {
         clearInterval(interval)
         showRemainingReadingInfo(textArray.length, i, wpm, false)
         textInput.style.visibility = "visible"
+        document.body.style.cursor = "default"
     }
     else if (textArray) {
         isRunning = true
@@ -80,6 +81,7 @@ const runHandler = () => {
         readerButton.innerHTML = "Pause"
         remainingInfo.textContent = ""
         textInput.style.visibility = "hidden"
+        document.body.style.cursor = "none"
     }
 }
 
